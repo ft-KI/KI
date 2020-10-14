@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class NeuronalNetwork {
     private ArrayList<InputNeuron> inputNeurons=new ArrayList<>();
-    private ArrayList<WorkingNeuron>hiddenNeurons=new ArrayList<>();
+    private ArrayList<ArrayList<WorkingNeuron>>hiddenNeurons=new ArrayList<>();
     private ArrayList<WorkingNeuron>outputNeurons=new ArrayList<>();
 
     public NeuronalNetwork(){
@@ -33,14 +33,18 @@ public class NeuronalNetwork {
         for(int i=0;i<shoulds.length;i++){
             outputNeurons.get(i).deltaLearning(epsilon);
         }
-        for(int i=0;i<hiddenNeurons.size();i++){
-            hiddenNeurons.get(i).deltaLearning(epsilon);
+        for(int i=0;i<hiddenNeurons.size();i++) {
+            for (int a = 0; a < hiddenNeurons.get(i).size(); a++) {
+                hiddenNeurons.get(i).get(a).deltaLearning(epsilon);
+            }
         }
 
     }
     public void reset(){
-        for(WorkingNeuron wn:hiddenNeurons){
-            wn.reset();
+        for(ArrayList<WorkingNeuron> a:hiddenNeurons){
+            for(WorkingNeuron wn:a) {
+                wn.reset();
+            }
         }
         for(WorkingNeuron on:outputNeurons){
             on.reset();
@@ -48,16 +52,20 @@ public class NeuronalNetwork {
     }
 
     public void setAllActivationfunktions(ActivationFunktion af){
-        for(WorkingNeuron n:hiddenNeurons){
-            n.setActivationFunktion(af);
+        for(ArrayList<WorkingNeuron> a:hiddenNeurons){
+            for(WorkingNeuron wn:a) {
+                wn.setActivationFunktion(af);
+            }
         }
         for(WorkingNeuron n:outputNeurons){
             n.setActivationFunktion(af);
         }
     }
     public void clearConnections(){
-        for(WorkingNeuron n:hiddenNeurons){
-            n.getInputConnections().clear();
+        for(ArrayList<WorkingNeuron> a:hiddenNeurons){
+            for(WorkingNeuron wn:a) {
+                wn.getInputConnections().clear();
+            }
         }
         for(WorkingNeuron n:outputNeurons){
             n.getInputConnections().clear();
@@ -73,9 +81,11 @@ public class NeuronalNetwork {
             inputNeurons.add(new InputNeuron());
         }
     }
-    public void createHiddenNeurons(int n){
+    public void addHiddenLayer(int n){
+        ArrayList<WorkingNeuron>hidden=new ArrayList<>();
+        hiddenNeurons.add(hidden);
         for(int i=0;i<n;i++){
-            hiddenNeurons.add(new WorkingNeuron());
+            hidden.add(new WorkingNeuron());
         }
     }
     public void createOutputtNeurons(int n){
