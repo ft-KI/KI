@@ -28,12 +28,18 @@ public class NeuronalNetwork {
         if(hiddenNeurons.size()>0){
             for(int i=0;i<outputNeurons.size();i++){
                 outputNeurons.get(i).backpropagateSmallDelta();
-            }        }
+            }
+            for(int a=1;a<hiddenNeurons.size();a++){
+                for(int i=0;i<hiddenNeurons.get(a).size();i++){
+                    hiddenNeurons.get(a).get(i).backpropagateSmallDelta();
+                }
+            }
+        }
 
         for(int i=0;i<shoulds.length;i++){
             outputNeurons.get(i).deltaLearning(epsilon);
         }
-        for(int i=0;i<hiddenNeurons.size();i++) {
+        for(int i = hiddenNeurons.size() - 1; i >= 0; i--) {
             for (int a = 0; a < hiddenNeurons.get(i).size(); a++) {
                 hiddenNeurons.get(i).get(a).deltaLearning(epsilon);
             }
@@ -123,14 +129,22 @@ public class NeuronalNetwork {
 
             int index = 0;
 
-            for(WorkingNeuron hidden : hiddenNeurons) {
+            for(WorkingNeuron hidden : hiddenNeurons.get(0)) {
                 for(InputNeuron in : inputNeurons) {
                     hidden.addInputConnection(new Connection(in, weights[index++]));
                 }
             }
 
+            for(int i=0;i<hiddenNeurons.size()-1;i++){
+                for(int j=0;j<hiddenNeurons.get(i).size();j++){
+                    for(int k=0;k<hiddenNeurons.get(i+1).size();k++){
+                        hiddenNeurons.get(i+1).get(k).addInputConnection(new Connection(hiddenNeurons.get(i).get(j),weights[index++]));
+                    }
+                }
+            }
+
             for(WorkingNeuron out : outputNeurons) {
-                for(WorkingNeuron hidden : hiddenNeurons) {
+                for(WorkingNeuron hidden : hiddenNeurons.get(hiddenNeurons.size()-1)) {
                     out.addInputConnection(new Connection(hidden, weights[index++]));
                 }
             }
@@ -151,22 +165,36 @@ public class NeuronalNetwork {
                 }
             }
         }else{
-            for (WorkingNeuron wn : outputNeurons) {
-                for (WorkingNeuron hidden : hiddenNeurons) {
-                    if(random) {
-                        wn.addInputConnection(new Connection(hidden, (float) Math.random()));
-                    }else{
-                        wn.addInputConnection(new Connection(hidden, initWeights));
-
-                    }
-                }
-            }
-            for (WorkingNeuron hidden : hiddenNeurons) {
-                for (InputNeuron in : inputNeurons) {
+            for(WorkingNeuron hidden : hiddenNeurons.get(0)) {
+                for(InputNeuron in : inputNeurons) {
                     if(random) {
                         hidden.addInputConnection(new Connection(in, (float) Math.random()));
                     }else{
                         hidden.addInputConnection(new Connection(in, initWeights));
+
+                    }
+                }
+            }
+
+            for(int i=0;i<hiddenNeurons.size()-1;i++){
+                for(int j=0;j<hiddenNeurons.get(i).size();j++){
+                    for(int k=0;k<hiddenNeurons.get(i+1).size();k++){
+                        if(random) {
+                            hiddenNeurons.get(i + 1).get(k).addInputConnection(new Connection(hiddenNeurons.get(i).get(j), (float) Math.random()));
+                        }else{
+                            hiddenNeurons.get(i + 1).get(k).addInputConnection(new Connection(hiddenNeurons.get(i).get(j), initWeights));
+
+                        }
+                    }
+                }
+            }
+
+            for(WorkingNeuron out : outputNeurons) {
+                for(WorkingNeuron hidden : hiddenNeurons.get(hiddenNeurons.size()-1)) {
+                    if(random) {
+                        out.addInputConnection(new Connection(hidden, (float) Math.random()));
+                    }else{
+                        out.addInputConnection(new Connection(hidden, initWeights));
 
                     }
                 }

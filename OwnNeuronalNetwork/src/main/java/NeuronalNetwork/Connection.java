@@ -5,6 +5,7 @@ import NeuronalNetwork.neurons.Neuron;
 public class Connection {
     private Neuron startNeuron;
     private float weight;
+    private float momentum=0;
     public Connection(Neuron StartNeuron, float weight){
         this.startNeuron=StartNeuron;
         this.weight=weight;
@@ -25,7 +26,9 @@ public class Connection {
         this.weight = weight;
     }
     public void addWeight(float deltaweight){
-        this.weight+=deltaweight;
+        momentum+=deltaweight;
+        momentum*=0.9f;
+        this.weight+=deltaweight+momentum;
     }
 
     public void setStartNeuron(Neuron startNeuron) {

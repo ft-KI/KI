@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hallo");
         network.createInputNeurons(3);
-        network.createHiddenNeurons(2);
+        network.addHiddenLayer(30);
         network.createOutputtNeurons(1);
         network.setInputValues(8901,7348,9872);
         network.connectFullMeshed();
@@ -22,8 +22,8 @@ public class Main {
             network.reset();
             network.backpropagation(new float[]{0.789f},epsilon);
             System.out.println("output "+network.getOutputNeurons().get(0).getOutputValue());
-            epsilon*=0.9999f;
-            Thread.sleep(1);
+            epsilon*=0.99f;
+            Thread.sleep(1000);
         }
 
     }
