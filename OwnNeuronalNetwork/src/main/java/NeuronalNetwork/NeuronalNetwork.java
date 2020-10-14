@@ -138,27 +138,54 @@ public class NeuronalNetwork {
 
     }
 
-    public void connectFullMeshed() {
+    private void connectFullMeshed(boolean random,float initWeights) {
         if(hiddenNeurons.size()==0) {
             for (WorkingNeuron wn : outputNeurons) {
                 for (InputNeuron in : inputNeurons) {
-                    wn.addInputConnection(new Connection(in, 0.5f));
+                    if(random) {
+                        wn.addInputConnection(new Connection(in, (float) Math.random()));
+                    }else{
+                        wn.addInputConnection(new Connection(in, initWeights));
+
+                    }
                 }
             }
         }else{
             for (WorkingNeuron wn : outputNeurons) {
                 for (WorkingNeuron hidden : hiddenNeurons) {
-                    wn.addInputConnection(new Connection(hidden, 0.5f));
+                    if(random) {
+                        wn.addInputConnection(new Connection(hidden, (float) Math.random()));
+                    }else{
+                        wn.addInputConnection(new Connection(hidden, initWeights));
+
+                    }
                 }
             }
             for (WorkingNeuron hidden : hiddenNeurons) {
                 for (InputNeuron in : inputNeurons) {
-                    hidden.addInputConnection(new Connection(in, 0.5f));
+                    if(random) {
+                        hidden.addInputConnection(new Connection(in, (float) Math.random()));
+                    }else{
+                        hidden.addInputConnection(new Connection(in, initWeights));
+
+                    }
                 }
             }
 
         }
     }
+
+    public void connectFullMeshed() {
+        connectFullMeshed(false,0.5f);
+    }
+    public void connectFullMeshed(float initWeights) {
+        connectFullMeshed(false,initWeights);
+    }
+
+    public void connectRandomFullMeshed() {
+        connectFullMeshed(true,-1);
+    }
+
 
     public ArrayList<InputNeuron> getInputNeurons() {
         return inputNeurons;
