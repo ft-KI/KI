@@ -1,6 +1,8 @@
 import NeuronalNetwork.NeuronalNetwork;
 import NeuronalNetwork.activationFunktions.Sigmoid;
 
+import java.util.concurrent.TimeUnit;
+
 public class Main {
     public static float epoch=0;
     public static float correct=0;
@@ -29,6 +31,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hallo");
         network.createInputNeurons(TrainData.imageWidth* TrainData.imageHeight);
+        //network.addHiddenLayer(100);
         network.createOutputtNeurons(10);
         network.connectFullMeshed(0.5f);
         network.setAllActivationfunktions(new Sigmoid());
@@ -44,10 +47,17 @@ public class Main {
             TrainData.loadDigit(digit,number);
             network.setInputValues(TrainData.getImageAsFloat());
 
-            System.out.println("digit: "+digit+" number: "+number+" output: "+highestOutputNeuron()+" gutigkeit: "+correct/epoch+"  "+network.getOutputNeurons().get(1).getOutputValue());
+            if(digit==highestOutputNeuron())  {
+                System.out.println("\u001B[32m"+"digit: "+digit+" output: "+highestOutputNeuron()+" number: "+number+" gutigkeit: "+correct/epoch+"  "+network.getOutputNeurons().get(1).getOutputValue());
+
+            }else{
+                System.out.println("\u001B[31m"+"digit: "+digit+" output: "+highestOutputNeuron()+" number: "+number+" gutigkeit: "+correct/epoch+"  "+network.getOutputNeurons().get(1).getOutputValue());
+
+            }
+
 
             network.backpropagation(getCorrection(digit),epsilon);
-           // epsilon*=0.999f;
+            // epsilon*=0.999f;
             Thread.sleep(0);
 
             if(highestOutputNeuron()==digit){
