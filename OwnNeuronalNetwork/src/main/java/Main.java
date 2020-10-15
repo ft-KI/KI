@@ -2,7 +2,8 @@ import NeuronalNetwork.NeuronalNetwork;
 import NeuronalNetwork.activationFunktions.Sigmoid;
 
 public class Main {
-
+    public static float epoch=0;
+    public static float correct=0;
     public static NeuronalNetwork network=new NeuronalNetwork();
 
     public static float[] getCorrection(int digit){
@@ -29,24 +30,30 @@ public class Main {
         System.out.println("Hallo");
         network.createInputNeurons(TrainData.imageWidth* TrainData.imageHeight);
         network.createOutputtNeurons(10);
-        network.connectFullMeshed();
+        network.connectFullMeshed(0.5f);
         network.setAllActivationfunktions(new Sigmoid());
 
 
 
         int digit=0;
         int number=0;
-        int maxnumber=100;
-        float epsilon=0.91f;
+        int maxnumber=40000;
+        float epsilon=0.000007f;
         while(true){
             network.reset();
             TrainData.loadDigit(digit,number);
             network.setInputValues(TrainData.getImageAsFloat());
 
+            System.out.println("digit: "+digit+" number: "+number+" output: "+highestOutputNeuron()+" gutigkeit: "+correct/epoch+"  "+network.getOutputNeurons().get(1).getOutputValue());
+
             network.backpropagation(getCorrection(digit),epsilon);
-            System.out.println("digit: "+digit+" number: "+number+" output: "+highestOutputNeuron());
-            epsilon*=0.9999f;
+           // epsilon*=0.999f;
             Thread.sleep(0);
+
+            if(highestOutputNeuron()==digit){
+                correct++;
+            }
+            epoch++;
 
             digit++;
             if(digit>9){
@@ -56,6 +63,7 @@ public class Main {
             if(number>maxnumber){
                 break;
             }
+
 
         }
 

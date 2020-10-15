@@ -175,7 +175,7 @@ public class NeuronalNetwork {
                     }
                 }
             }
-
+/*
             for(int i=0;i<hiddenNeurons.size()-1;i++){
                 for(int j=0;j<hiddenNeurons.get(i).size();j++){
                     for(int k=0;k<hiddenNeurons.get(i+1).size();k++){
@@ -183,6 +183,21 @@ public class NeuronalNetwork {
                             hiddenNeurons.get(i + 1).get(k).addInputConnection(new Connection(hiddenNeurons.get(i).get(j), (float) Math.random()));
                         }else{
                             hiddenNeurons.get(i + 1).get(k).addInputConnection(new Connection(hiddenNeurons.get(i).get(j), initWeights));
+
+                        }
+                    }
+                }
+            }
+            */
+
+            for(int layer=1;layer<hiddenNeurons.size();layer++){
+                for(int right=0;right<hiddenNeurons.get(layer).size();right++){
+                    for(int left=0;left<hiddenNeurons.get(layer-1).size();left++){
+                        if(random) {
+                            hiddenNeurons.get(layer).get(right).addInputConnection(new Connection(hiddenNeurons.get(layer-1).get(left),(float) Math.random()));
+
+                        }else{
+                            hiddenNeurons.get(layer).get(right).addInputConnection(new Connection(hiddenNeurons.get(layer-1).get(left),initWeights));
 
                         }
                     }

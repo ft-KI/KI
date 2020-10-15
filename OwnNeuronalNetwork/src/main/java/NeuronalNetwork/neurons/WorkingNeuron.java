@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class WorkingNeuron implements Neuron{
     private ArrayList<Connection>inputConnections=new ArrayList<>();
-    private ActivationFunktion activationFunktion=new Identity();
+    private ActivationFunktion activationFunktion=new Sigmoid();
     private float smallDelta=0;
     private float value=0;
     private boolean isvalueset=false;

@@ -46,7 +46,7 @@ public class TrainData {
 
     public static float luminance(int x,int y){
         float luminanz=(int) (0.229*getRed(x,y)+0.587*getGreen(x,y)+0.114*getBlue(x,y));
-        return luminanz/255f;
+        return luminanz;
     }
 
     public static String getnumberstring(int number){
