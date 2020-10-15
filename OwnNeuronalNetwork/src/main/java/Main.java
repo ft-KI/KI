@@ -1,29 +1,62 @@
-import NeuronalNetwork.Connection;
 import NeuronalNetwork.NeuronalNetwork;
 import NeuronalNetwork.activationFunktions.Sigmoid;
-import NeuronalNetwork.neurons.InputNeuron;
-import NeuronalNetwork.neurons.WorkingNeuron;
-
-import java.util.ArrayList;
 
 public class Main {
 
     public static NeuronalNetwork network=new NeuronalNetwork();
+
+    public static float[] getCorrection(int digit){
+        float data[] = {0,0,0,0,0,0,0,0,0,0};
+        data[digit]=1;
+        return data;
+    }
+
+    public static int highestOutputNeuron(){
+        float max=0;
+        int maxdigit=0;
+        for(int i=0;i<10;i++){
+            if(network.getOutputNeurons().get(i).getOutputValue() > max){
+                max=network.getOutputNeurons().get(i).getOutputValue();
+                maxdigit=i;
+            }
+        }
+
+
+        return maxdigit;
+    }
+
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hallo");
-        network.createInputNeurons(3);
-        network.addHiddenLayer(30);
-        network.createOutputtNeurons(1);
-        network.setInputValues(8901,7348,9872);
+        network.createInputNeurons(TrainData.imageWidth* TrainData.imageHeight);
+        network.createOutputtNeurons(10);
         network.connectFullMeshed();
         network.setAllActivationfunktions(new Sigmoid());
-        float epsilon=0.9f;
+
+
+
+        int digit=0;
+        int number=0;
+        int maxnumber=100;
+        float epsilon=0.91f;
         while(true){
             network.reset();
-            network.backpropagation(new float[]{0.789f},epsilon);
-            System.out.println("output "+network.getOutputNeurons().get(0).getOutputValue());
-            epsilon*=0.99f;
-            Thread.sleep(1000);
+            TrainData.loadDigit(digit,number);
+            network.setInputValues(TrainData.getImageAsFloat());
+
+            network.backpropagation(getCorrection(digit),epsilon);
+            System.out.println("digit: "+digit+" number: "+number+" output: "+highestOutputNeuron());
+            epsilon*=0.9999f;
+            Thread.sleep(0);
+
+            digit++;
+            if(digit>9){
+                digit=0;
+                number++;
+            }
+            if(number>maxnumber){
+                break;
+            }
+
         }
 
     }
