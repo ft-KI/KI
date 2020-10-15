@@ -31,7 +31,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hallo");
         network.createInputNeurons(TrainData.imageWidth* TrainData.imageHeight);
-        //network.addHiddenLayer(100);
+        network.addHiddenLayer(10);
         network.createOutputtNeurons(10);
         network.connectFullMeshed(0.5f);
         network.setAllActivationfunktions(new Sigmoid());
@@ -41,7 +41,7 @@ public class Main {
         int digit=0;
         int number=0;
         int maxnumber=40000;
-        float epsilon=0.000007f;
+        float epsilon=0.1f;
         while(true){
             network.reset();
             TrainData.loadDigit(digit,number);
@@ -56,7 +56,6 @@ public class Main {
             }
 
 
-            network.backpropagation(getCorrection(digit),epsilon);
             // epsilon*=0.999f;
             Thread.sleep(0);
 
@@ -66,7 +65,7 @@ public class Main {
             epoch++;
 
             digit++;
-            if(digit>9){
+            if(digit>2){
                 digit=0;
                 number++;
             }
@@ -74,6 +73,7 @@ public class Main {
                 break;
             }
 
+            network.backpropagation(getCorrection(digit),epsilon);
 
         }
 
