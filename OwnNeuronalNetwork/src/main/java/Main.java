@@ -35,14 +35,6 @@ public class Main {
         network.addHiddenLayer(100);
         network.addHiddenLayer(100);
 
-
-
-
-
-
-
-
-
         network.createOutputtNeurons(10);
         network.connectFullMeshed(0.5f);
         network.setAllActivationfunktions(new Sigmoid());
