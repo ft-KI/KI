@@ -1,8 +1,12 @@
 package NeuronalNetwork.neurons;
 
+
+
+
+
+
 import NeuronalNetwork.Connection;
 import NeuronalNetwork.activationFunktions.ActivationFunktion;
-import NeuronalNetwork.activationFunktions.Identity;
 import NeuronalNetwork.activationFunktions.Sigmoid;
 
 import java.util.ArrayList;
@@ -44,6 +48,10 @@ public class WorkingNeuron implements Neuron{
     public void reset(){
         smallDelta=0;
         isvalueset=false;
+    }
+    public void randomMutate(float mutationrate){
+        int index=(int)(Math.random()* ((float) inputConnections.size()));
+        inputConnections.get(index).setWeight(inputConnections.get(index).getWeight()+(((((float) Math.random())-0.5f)*mutationrate)));
     }
     public void deltaLearning(float epsilon) {
         float bigDeltaFaktorbestandteil=activationFunktion.derivative(getOutputValue()) * epsilon * smallDelta;

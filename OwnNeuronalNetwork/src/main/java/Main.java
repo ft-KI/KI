@@ -1,7 +1,5 @@
-import NeuronalNetwork.NeuronalNetwork;
+import NeuronalNetwork.*;
 import NeuronalNetwork.activationFunktions.Sigmoid;
-
-import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static float epoch=0;

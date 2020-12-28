@@ -1,5 +1,6 @@
 package NeuronalNetwork;
 
+
 import NeuronalNetwork.neurons.Neuron;
 
 public class Connection {
