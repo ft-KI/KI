@@ -1,0 +1,22 @@
+NeuronalNetwork/activationFunktions/ActivationFunktion.java
+ NeuronalNetwork.activationFunktions.ActivationFunktion
+TrainData.java
+ TrainData
+Main.java
+ Main
+NeuronalNetwork/neurons/InputNeuron.java
+ NeuronalNetwork.neurons.InputNeuron
+NeuronalNetwork/neurons/Neuron.java
+ NeuronalNetwork.neurons.Neuron
+NeuronalNetwork/neurons/WorkingNeuron.java
+ NeuronalNetwork.neurons.WorkingNeuron
+NeuronalNetwork/Connection.java
+ NeuronalNetwork.Connection
+NeuronalNetwork/activationFunktions/Sigmoid.java
+ NeuronalNetwork.activationFunktions.Sigmoid
+TestMain.java
+ TestMain
+NeuronalNetwork/NeuronalNetwork.java
+ NeuronalNetwork.NeuronalNetwork
+NeuronalNetwork/activationFunktions/Identity.java
+ NeuronalNetwork.activationFunktions.Identity

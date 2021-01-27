@@ -1,0 +1,61 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "de.ft.ki",
+    "module": "OwnNeuronalNetwork",
+    "version": "1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7",
+      "buildId": "kteq5bgdzzgprfmyvs3okek4ju"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "OwnNeuronalNetwork-1.0.jar",
+          "url": "OwnNeuronalNetwork-1.0.jar",
+          "size": 13923,
+          "sha512": "b4618b68798e0eac98b666cbedcfdce9d83fdcbf69ad28c6a59159fe61a274e79d12978a9604b2d058552d13107bddfc625daf8849c7531daa9bb99e935583fd",
+          "sha256": "992a46d4cd7cbb41d53a6f58c1ada50ae267001e125011046f900383eaeb3782",
+          "sha1": "d941ee554a110228bda24283e6b9794362549a46",
+          "md5": "161c50d2a2b2964f5ef1a6a395edd390"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "OwnNeuronalNetwork-1.0.jar",
+          "url": "OwnNeuronalNetwork-1.0.jar",
+          "size": 13923,
+          "sha512": "b4618b68798e0eac98b666cbedcfdce9d83fdcbf69ad28c6a59159fe61a274e79d12978a9604b2d058552d13107bddfc625daf8849c7531daa9bb99e935583fd",
+          "sha256": "992a46d4cd7cbb41d53a6f58c1ada50ae267001e125011046f900383eaeb3782",
+          "sha1": "d941ee554a110228bda24283e6b9794362549a46",
+          "md5": "161c50d2a2b2964f5ef1a6a395edd390"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "de.ft",
+    "module": "ki",
+    "version": "1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.7",
+      "buildId": "oaltwjbelbeq7bpfdrkfrcuhye"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "ki-1.0.jar",
+          "url": "ki-1.0.jar",
+          "size": 13923,
+          "sha512": "285d6cdbe6c9bb394301a4d766283a99f03f7fcbc0c0c29da981b67722f1797f204e6398b9c234276f872f626da731e73cec405ca20946873f148e1dad373afc",
+          "sha256": "b81af1fbe31d9d0d5f54d5647beaf0f9cc9757c3156e48004640f088c512c1e2",
+          "sha1": "2a5a6987f7aa9e2dcf99c76149c8d5b863804f6b",
+          "md5": "8e94dbee2dfb9c103093735028a94560"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "ki-1.0.jar",
+          "url": "ki-1.0.jar",
+          "size": 13923,
+          "sha512": "285d6cdbe6c9bb394301a4d766283a99f03f7fcbc0c0c29da981b67722f1797f204e6398b9c234276f872f626da731e73cec405ca20946873f148e1dad373afc",
+          "sha256": "b81af1fbe31d9d0d5f54d5647beaf0f9cc9757c3156e48004640f088c512c1e2",
+          "sha1": "2a5a6987f7aa9e2dcf99c76149c8d5b863804f6b",
+          "md5": "8e94dbee2dfb9c103093735028a94560"
+        }
+      ]
+    }
+  ]
+}
